@@ -6,11 +6,13 @@ import { constantRoutes, dynamicRoutes } from "@/router"
 import { flatMultiLevelRoutes } from "@/router/helper"
 import routeSettings from "@/config/route"
 
+/** 判断角色是否具有该条路由的权限 */
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
   const routeRoles = route.meta?.roles
   return routeRoles ? roles.some((role) => routeRoles.includes(role)) : true
 }
 
+/** 过滤具有权限的动态路由 */
 const filterDynamicRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
   const res: RouteRecordRaw[] = []
   routes.forEach((route) => {
@@ -26,7 +28,7 @@ const filterDynamicRoutes = (routes: RouteRecordRaw[], roles: string[]) => {
 }
 
 export const usePermissionStore = defineStore("permission", () => {
-  /** 可访问的路由 */
+  /** 全部可访问的路由 */
   const routes = ref<RouteRecordRaw[]>([])
   /** 有访问权限的动态路由 */
   const addRoutes = ref<RouteRecordRaw[]>([])
@@ -43,6 +45,7 @@ export const usePermissionStore = defineStore("permission", () => {
   }
 
   const _set = (accessedRoutes: RouteRecordRaw[]) => {
+    // 全部路由规则等于常量路由 + 角色具有权限的路由
     routes.value = constantRoutes.concat(accessedRoutes)
     addRoutes.value = routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(accessedRoutes) : accessedRoutes
   }

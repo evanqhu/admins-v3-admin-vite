@@ -7,6 +7,7 @@ const userStore = useUserStore()
 const isAdmin = userStore.roles.includes("admin")
 </script>
 
+<!-- component 动态组件 -->
 <template>
   <component :is="isAdmin ? Admin : Editor" />
 </template>

@@ -15,19 +15,21 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
   return {
     /** 打包时根据实际情况修改 base */
     base: VITE_PUBLIC_PATH,
+    /** 配置别名 */
     resolve: {
       alias: {
         /** @ 符号指向 src 目录 */
         "@": resolve(__dirname, "./src")
       }
     },
+    /** 代理服务器 */
     server: {
       /** 设置 host: true 才可以使用 Network 的形式，以 IP 访问项目 */
       host: true, // host: "0.0.0.0"
       /** 端口号 */
       port: 3333,
       /** 是否自动打开浏览器 */
-      open: false,
+      open: true,
       /** 跨域设置允许 */
       cors: true,
       /** 端口被占用时，是否直接退出 */
@@ -46,6 +48,7 @@ export default ({ mode }: ConfigEnv): UserConfigExport => {
         clientFiles: ["./src/layouts/**/*.vue"]
       }
     },
+    /** 打包配置 */
     build: {
       /** 单个 chunk 文件的大小超过 2048KB 时发出警告 */
       chunkSizeWarningLimit: 2048,

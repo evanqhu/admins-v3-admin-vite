@@ -19,6 +19,7 @@ interface RouteSettings {
   thirdLevelRouteCache: boolean
 }
 
+/**  默认路由器设置 */
 const routeSettings: RouteSettings = {
   dynamic: true,
   defaultRoles: ["DEFAULT_ROLE"],
