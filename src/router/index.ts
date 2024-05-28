@@ -1,3 +1,4 @@
+/** 项目路由 */
 import { type RouteRecordRaw, createRouter } from "vue-router"
 import { history, flatMultiLevelRoutes } from "./helper"
 import routeSettings from "@/config/route"
@@ -289,6 +290,7 @@ export const dynamicRoutes: RouteRecordRaw[] = [
   }
 ]
 
+/**  路由器 */
 const router = createRouter({
   history,
   routes: routeSettings.thirdLevelRouteCache ? flatMultiLevelRoutes(constantRoutes) : constantRoutes

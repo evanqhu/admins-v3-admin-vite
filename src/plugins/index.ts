@@ -1,3 +1,4 @@
+/** 加载插件 */
 import { type App } from "vue"
 import { loadElementPlus } from "./element-plus"
 import { loadElementPlusIcon } from "./element-plus-icon"

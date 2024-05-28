@@ -1,3 +1,4 @@
+<!-- 登录组件 -->
 <script lang="ts" setup>
 import { reactive, ref } from "vue"
 import { useRouter } from "vue-router"
@@ -12,6 +13,7 @@ import { useFocus } from "./hooks/useFocus"
 
 const router = useRouter()
 const { isFocus, handleBlur, handleFocus } = useFocus()
+const userStore = useUserStore()
 
 /** 登录表单元素的引用 */
 const loginFormRef = ref<FormInstance | null>(null)
@@ -40,7 +42,7 @@ const handleLogin = () => {
   loginFormRef.value?.validate((valid: boolean, fields) => {
     if (valid) {
       loading.value = true
-      useUserStore()
+      userStore
         .login(loginFormData)
         .then(() => {
           router.push({ path: "/" })

@@ -5,6 +5,9 @@ module.exports = {
     node: true,
     es6: true
   },
+  // npm i eslint-plugin-vue eslint-plugin-prettier vue-eslint-parser -D
+  // npm i @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
+  // npm i @vue/eslint-config-prettier @vue/eslint-config-typescript -D
   extends: [
     "plugin:vue/vue3-essential",
     "eslint:recommended",

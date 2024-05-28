@@ -1,3 +1,4 @@
+/** 路由监听器 */
 import { onBeforeUnmount } from "vue"
 import mitt, { type Handler } from "mitt"
 import { type RouteLocationNormalized } from "vue-router"
@@ -9,9 +10,9 @@ const emitter = mitt()
 const key = Symbol("ROUTE_CHANGE")
 let latestRoute: RouteLocationNormalized
 
-/** 设置最新的路由信息，触发路由变化事件 */
+/** 触发路由变化事件，缓存最新的路由信息 */
 export const setRouteChange = (to: RouteLocationNormalized) => {
-  // 触发事件
+  // 触发路由变化事件
   emitter.emit(key, to)
   // 缓存最新的路由信息
   latestRoute = to
