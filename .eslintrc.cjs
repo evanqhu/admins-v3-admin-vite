@@ -5,19 +5,20 @@ module.exports = {
     node: true,
     es6: true
   },
-  // npm i eslint-plugin-vue eslint-plugin-prettier vue-eslint-parser -D
-  // npm i @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
-  // npm i @vue/eslint-config-prettier @vue/eslint-config-typescript -D
+  // npm i eslint-plugin-vue -D【Vue 官方的 ESLint 插件；内部依赖了 vue-eslint-parser 解析器】
+  // npm i  @vue/eslint-config-typescript -D【Vue 维护的插件；内部依赖了 @typescript-eslint/parser 和 @typescript-eslint/eslint-plugin】
+  // npm i @vue/eslint-config-prettier -D【Vue 维护的插件；内部依赖了 eslint-plugin-prettier】
+
   extends: [
-    "plugin:vue/vue3-essential",
-    "eslint:recommended",
-    "@vue/typescript/recommended",
-    "@vue/prettier",
-    "@vue/eslint-config-typescript"
+    "plugin:vue/vue3-essential", // eslint-plugin-vue
+    "eslint:recommended", // eslint 自带规则集
+    "@vue/typescript/recommended", // @vue/eslint-config-typescript
+    "@vue/prettier", // @vue/eslint-config-prettier
+    "@vue/eslint-config-typescript" // @vue/eslint-config-typescript 整合 Vue 和 TS 的规则
   ],
   parser: "vue-eslint-parser",
   parserOptions: {
-    parser: "@typescript-eslint/parser",
+    parser: "@typescript-eslint/parser", // @typescript-eslint/parser 解析器，告诉 ESLint 如何解析 TypeScript 代码
     ecmaVersion: 2020,
     sourceType: "module",
     jsxPragma: "React",
