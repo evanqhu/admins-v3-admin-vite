@@ -5,7 +5,7 @@ import { LayoutModeEnum } from "@/constants/app-key"
 export interface LayoutSettings {
   /** 是否显示 Settings Panel */
   showSettings: boolean
-  /** 布局模式 */
+  /** 侧边栏布局模式 */
   layoutMode: LayoutModeEnum
   /** 是否显示标签栏 */
   showTagsView: boolean
@@ -20,7 +20,7 @@ export interface LayoutSettings {
   /** 是否显示切换主题按钮 */
   showThemeSwitch: boolean
   /** 是否显示全屏按钮 */
-  showScreenfull: boolean
+  showScreenFull: boolean
   /** 是否显示搜索按钮 */
   showSearchMenu: boolean
   /** 是否缓存标签栏 */
@@ -43,10 +43,10 @@ const defaultSettings: LayoutSettings = {
   showLogo: true,
   showNotify: true,
   showThemeSwitch: true,
-  showScreenfull: true,
+  showScreenFull: true,
   showSearchMenu: true,
   cacheTagsView: false,
-  showWatermark: true,
+  showWatermark: false,
   showGreyMode: false,
   showColorWeakness: false
 }

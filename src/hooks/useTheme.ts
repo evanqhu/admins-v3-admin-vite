@@ -1,3 +1,4 @@
+// 用于管理和切换网站主题的自定义钩子
 import { ref, watchEffect } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/local-storage"
 

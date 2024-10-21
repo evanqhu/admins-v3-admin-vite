@@ -108,6 +108,7 @@ createCode()
             />
           </el-form-item>
           <el-form-item prop="code">
+            <!-- .trim自动移除用户输入的首尾空格 -->
             <el-input
               v-model.trim="loginFormData.code"
               placeholder="验证码"
@@ -117,6 +118,7 @@ createCode()
               maxlength="7"
               size="large"
             >
+              <!-- el-input的插槽，用于在输入框后面追加内容 -->
               <template #append>
                 <el-image :src="codeUrl" @click="createCode" draggable="false">
                   <template #placeholder>

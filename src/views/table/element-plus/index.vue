@@ -15,19 +15,25 @@ defineOptions({
 const loading = ref<boolean>(false)
 const { paginationData, handleCurrentChange, handleSizeChange } = usePagination()
 
-//#region 增
+// 增
+// 定义一个默认的表单数据结构
 const DEFAULT_FORM_DATA: CreateOrUpdateTableRequestData = {
   id: undefined,
   username: "",
   password: ""
 }
+// 控制表单弹窗是否可见
 const dialogVisible = ref<boolean>(false)
+// 引用表单实例，用于操作表单方法
 const formRef = ref<FormInstance | null>(null)
+// 表单的数据，深拷贝 DEFAULT_FORM_DATA 用于初始化表单数据
 const formData = ref<CreateOrUpdateTableRequestData>(cloneDeep(DEFAULT_FORM_DATA))
+//  定义表单的校验规则
 const formRules: FormRules<CreateOrUpdateTableRequestData> = {
   username: [{ required: true, trigger: "blur", message: "请输入用户名" }],
   password: [{ required: true, trigger: "blur", message: "请输入密码" }]
 }
+// 用于提交表单，提交前先进行表单校验
 const handleCreateOrUpdate = () => {
   formRef.value?.validate((valid: boolean, fields) => {
     if (!valid) return console.error("表单校验不通过", fields)
@@ -48,9 +54,8 @@ const resetForm = () => {
   formRef.value?.clearValidate()
   formData.value = cloneDeep(DEFAULT_FORM_DATA)
 }
-//#endregion
 
-//#region 删
+// 删
 const handleDelete = (row: TableData) => {
   ElMessageBox.confirm(`正在删除用户：${row.username}，确认删除？`, "提示", {
     confirmButtonText: "确定",
@@ -63,16 +68,14 @@ const handleDelete = (row: TableData) => {
     })
   })
 }
-//#endregion
 
-//#region 改
+// 改
 const handleUpdate = (row: TableData) => {
   dialogVisible.value = true
   formData.value = cloneDeep(row)
 }
-//#endregion
 
-//#region 查
+// 查
 const tableData = ref<TableData[]>([])
 const searchFormRef = ref<FormInstance | null>(null)
 const searchData = reactive({
@@ -105,7 +108,6 @@ const resetSearch = () => {
   searchFormRef.value?.resetFields()
   handleSearch()
 }
-//#endregion
 
 /** 监听分页参数的变化 */
 watch([() => paginationData.currentPage, () => paginationData.pageSize], getTableData, { immediate: true })

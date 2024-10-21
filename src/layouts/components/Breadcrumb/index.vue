@@ -12,6 +12,7 @@ const { listenerRouteChange } = useRouteListener()
 const breadcrumbs = ref<RouteLocationMatched[]>([])
 
 /** 获取面包屑导航信息 */
+// 过滤掉没有 meta.title 或 breadcrumb 为 false 的路由
 const getBreadcrumb = () => {
   breadcrumbs.value = route.matched.filter((item) => item.meta?.title && item.meta?.breadcrumb !== false)
 }
