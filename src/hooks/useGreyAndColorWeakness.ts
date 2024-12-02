@@ -1,3 +1,4 @@
+/** 灰色和色弱模式 */
 import { watchEffect } from "vue"
 import { useSettingsStore } from "@/store/modules/settings"
 
@@ -5,7 +6,7 @@ const GREY_MODE = "grey-mode"
 const COLOR_WEAKNESS = "color-weakness"
 const classList = document.documentElement.classList
 
-/** 初始化 */
+/** 初始化灰色和色弱模式 */
 const initGreyAndColorWeakness = () => {
   const settingsStore = useSettingsStore()
   watchEffect(() => {

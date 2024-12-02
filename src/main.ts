@@ -1,3 +1,4 @@
+/** 入口文件 */
 // core
 import App from "@/App.vue"
 import { createApp } from "vue"

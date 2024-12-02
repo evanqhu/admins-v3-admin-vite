@@ -1,6 +1,8 @@
+/** 主题 */
 import { ref, watchEffect } from "vue"
 import { getActiveThemeName, setActiveThemeName } from "@/utils/cache/local-storage"
 
+/** 默认主题 */
 const DEFAULT_THEME_NAME = "normal"
 type DefaultThemeName = typeof DEFAULT_THEME_NAME
 
@@ -47,7 +49,7 @@ const removeHtmlClass = (value: ThemeName) => {
   document.documentElement.classList.remove(...otherThemeNameList)
 }
 
-/** 初始化 */
+/** 初始化主题 */
 const initTheme = () => {
   // watchEffect 来收集副作用
   watchEffect(() => {

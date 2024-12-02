@@ -1,3 +1,4 @@
+<!-- 根组件 -->
 <script lang="ts" setup>
 import { useTheme } from "@/hooks/useTheme"
 import { useGreyAndColorWeakness } from "@/hooks/useGreyAndColorWeakness"
