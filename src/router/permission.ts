@@ -1,3 +1,4 @@
+/** 路由导航守卫 */
 import { router } from "@/router"
 import { useUserStoreHook } from "@/store/modules/user"
 import { usePermissionStoreHook } from "@/store/modules/permission"
@@ -10,14 +11,16 @@ import isWhiteList from "@/config/white-list"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css"
 
+// 配置 NProgress
 NProgress.configure({ showSpinner: false })
 const { setTitle } = useTitle()
 const userStore = useUserStoreHook()
 const permissionStore = usePermissionStoreHook()
 
+// 前置路由导航守卫
 router.beforeEach(async (to, _from, next) => {
-  NProgress.start()
-  // 如果没有登陆
+  NProgress.start() // 开始进度条
+  // 如果没有登录
   if (!getToken()) {
     // 如果在免登录的白名单中，则直接进入
     if (isWhiteList(to)) return next()
@@ -30,7 +33,7 @@ router.beforeEach(async (to, _from, next) => {
     return next({ path: "/" })
   }
 
-  // 如果用户已经获得其权限角色
+  // 如果用户已经获得其权限角色，则直接进入
   if (userStore.roles.length !== 0) return next()
 
   // 否则要重新获取权限角色
@@ -38,7 +41,7 @@ router.beforeEach(async (to, _from, next) => {
     await userStore.getInfo()
     // 注意：角色必须是一个数组！ 例如: ["admin"] 或 ["developer", "editor"]
     const roles = userStore.roles
-    // 生成可访问的 Routes
+    // 根据用户角色生成可访问的 Routes
     routeSettings.dynamic ? permissionStore.setRoutes(roles) : permissionStore.setAllRoutes()
     // 将 "有访问权限的动态路由" 添加到 Router 中
     permissionStore.addRoutes.forEach((route) => router.addRoute(route))
@@ -52,8 +55,12 @@ router.beforeEach(async (to, _from, next) => {
   }
 })
 
+// 路由导航完成后的钩子
 router.afterEach((to) => {
+  // 设置路由变化
   setRouteChange(to)
+  // 设置页面标题
   setTitle(to.meta.title)
+  // 结束进度条
   NProgress.done()
 })

@@ -1,3 +1,4 @@
+/** 布局模式 */
 import { computed } from "vue"
 import { useSettingsStore } from "@/store/modules/settings"
 import { LayoutModeEnum } from "@/constants/app-key"
